@@ -1,0 +1,4 @@
+https://blog.csdn.net/weixin_34092455/article/details/85954055
+
+innodb 的表，直接复制文件是无法使用的，会提示 table doesn’t exists ，在复制的时候，应将data目录下的 ibdata1 文件一并复制过去，
+并且删除 ib_logfile0 、ib_logfile1 文件

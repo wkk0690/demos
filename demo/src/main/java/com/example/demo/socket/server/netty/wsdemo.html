@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>
+        netty的websocket的测试
+    </h1>
+</body>
+
+<script>
+    var socket;
+    var socketOpen = false;
+    socket = socket = new WebSocket("ws://localhost:8111/ws");
+
+    //wss://stream2.binance.cloud/ws/6CNNKFH79XzdUreJo9wxx2yIAmXuGNi1CYYhQBRUB3dgA1M3XCAb97SGULXC
+    //wss://jpush.binance.im:5000/socket.io/?EIO=3&transport=websocket
+    //wss://stream2.binance.cloud/stream?streams=!miniTicker@arr@3000ms/btcusdt@depth.b10/btcusdt@aggTrade.b10
+    //wss://stream2.binance.cloud/stream?streams=btcusdt@kline_1m.b10
+
+    //wss://stream2.binance.cloud/stream?streams=ethusdt@depth5  深度
+    //wss://stream2.binance.cloud/stream?streams=ethusdt@trade 实时成交
+
+    socket.connectionTimeout = 6000;
+    socket.binaryType = "arraybuffer";
+    socket.onerror = function () {
+        socketOpen = false;
+        console.log("error");
+        console.log(arguments);
+    };
+    socket.onclose = function (event) {
+        socketOpen = false;
+        console.log("WebSocket close at time: " + new Date());
+    };
+    socket.onopen = function (event) {
+        console.log("WebSocket onopen at time: " + new Date());
+        socketOpen = true;
+        socket.binaryType = "arraybuffer";
+
+        socket.send("helloworld")
+    };
+
+    socket.onmessage = function (event) {
+        var ps = event.data.ping;
+        if(ps){
+            socket.send(JSON.stringify({"pong":ps}))
+        }
+    }
+</script>
+</html>
