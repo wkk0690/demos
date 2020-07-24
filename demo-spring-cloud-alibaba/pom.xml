@@ -14,7 +14,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.alibaba</groupId>
-    <artifactId>alibaba-server-merber</artifactId>
+    <artifactId>demo-spring-cloud-alibaba</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 

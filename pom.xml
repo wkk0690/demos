@@ -10,8 +10,9 @@
     <description>Demo project for Spring Boot</description>
 
     <modules>
+        <module>demo-spring-cloud-alibaba</module>
         <module>demo</module>
-        <module>demo1</module>
+        <module>demo-oauth2</module>
         <module>demo2</module>
         <module>demo3</module>
         <module>demo4</module>
