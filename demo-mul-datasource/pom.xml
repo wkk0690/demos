@@ -2,26 +2,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <groupId>com.example</groupId>
-    <artifactId>demos</artifactId>
+    <artifactId>demo-mul-datasource</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demos</name>
+    <name>demo7</name>
     <description>Demo project for Spring Boot</description>
-
-    <modules>
-        <module>demo-spring-cloud-alibaba</module>
-        <module>demo</module>
-        <module>demo-oauth2</module>
-        <module>demo2</module>
-        <module>demo-dubbo-spring-cloud</module>
-        <module>demo-mul-datasource</module>
-        <module>demo8</module>
-    </modules>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
+
+    <modules>
+        <module>change-datasource</module>
+        <module>DataSource</module>
+    </modules>
 
     <build>
         <plugins>
