@@ -17,7 +17,7 @@ spring:
   redis:
     host: 127.0.0.1
     password:
-    database: 0 # 数据库索引 默认0
+    database: 1 # 数据库索引 默认0
     port: 6379
     timeout: 3S # 超时时间 Duration类型 3秒
 
@@ -25,3 +25,25 @@ mybatis-plus:
   mapper-locations: classpath*:mapper/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+datasources:
+  list:
+    - datasourceId: 0
+      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: 123456
+    - datasourceId: 1
+      url: jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: 123456
+
+redis:
+  list:
+    - host: 127.0.0.1
+      password:
+      database: 2 # 数据库索引 默认0
+      port: 6379
+    - host: 127.0.0.1
+      password:
+      database: 3 # 数据库索引 默认0
+      port: 6379

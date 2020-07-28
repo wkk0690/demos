@@ -27,7 +27,6 @@ public class TestInterceptor implements  HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        System.out.println("拦截器1");
         return true;
     }
  
@@ -43,20 +42,5 @@ public class TestInterceptor implements  HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-    }
-
-    private void changeDatabase() throws Exception {
-        //创建数据源
-        DataSource d  = new DataSource();
-        d.setDatasourceId("1");
-        d.setCode("1");
-        d.setUrl("jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8&useSSL=false");
-        d.setUserName("root");
-        d.setPassWord("123456");
-        d.setDatabasetype("1");
-        dynamicDataSource.createDataSourceWithCheck(d);
-
-        //切换数据源
-        DBContextHolder.setDataSource(d.getDatasourceId());
     }
 }

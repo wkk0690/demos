@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
@@ -28,6 +29,28 @@ public class RedisConfig {
 
     @Bean(name="redisTemplate")
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate<Object, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(redisConnectionFactory);
+
+        FastJsonRedisSerializer<Object> serializer = new FastJsonRedisSerializer<Object>(Object.class);
+        // value值的序列化采用fastJsonRedisSerializer
+        template.setValueSerializer(serializer);
+        template.setHashValueSerializer(serializer);
+        // key的序列化采用StringRedisSerializer
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setHashKeySerializer(new StringRedisSerializer());
+
+        template.setConnectionFactory(redisConnectionFactory);
+        return template;
+    }
+
+    @Bean(name="redisTemplate1")
+    public RedisTemplate<Object, Object> redisTemplate1(RedisConnectionFactory redisConnectionFactory) {
+
+        LettuceConnectionFactory connectionFactory = (LettuceConnectionFactory) redisConnectionFactory;
+        connectionFactory.setDatabase(2);
+        connectionFactory.resetConnection();
+
         RedisTemplate<Object, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory);
 

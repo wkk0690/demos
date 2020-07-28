@@ -97,8 +97,6 @@ public class UserController {
 //        User user = User.builder().id("333").username("333").password("333").build();
 //        userService.insert(user);
 
-        changeDatabase();
-
         List<User> list1=userService.list();
         list1.forEach(dataSource1 -> System.out.println(dataSource1.getUsername()));
 
@@ -106,21 +104,6 @@ public class UserController {
 //        userService.insert(user1);
 
         return null;
-    }
-
-    private void changeDatabase() throws Exception {
-        //创建数据源
-        DataSource d  = new DataSource();
-        d.setDatasourceId("1");
-        d.setCode("1");
-        d.setUrl("jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8&useSSL=false");
-        d.setUserName("root");
-        d.setPassWord("123456");
-        d.setDatabasetype("1");
-        dynamicDataSource.createDataSourceWithCheck(d);
-
-        //切换数据源
-        DBContextHolder.setDataSource(d.getDatasourceId());
     }
 
     /**

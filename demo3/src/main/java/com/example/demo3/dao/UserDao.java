@@ -1,5 +1,6 @@
 package com.example.demo3.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.demo3.pojo.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,8 +13,7 @@ import java.util.List;
  * @create 2020/07/20
  * @desc
  */
-@Mapper
-public interface UserDao {
+public interface UserDao extends BaseMapper<User> {
 
     @Select("select * from user")
     List<User> list();
@@ -25,5 +25,5 @@ public interface UserDao {
     List<User> list2();
 
     @Insert("insert into user values (#{id}, #{username}, #{password}, now())")
-    void insert(User user);
+    int insert(User user);
 }

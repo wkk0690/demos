@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.example.demo3.config.DBContextHolder;
 import com.example.demo3.config.DynamicDataSource;
 import com.example.demo3.pojo.DataSource;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -21,19 +22,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Component
 public class AdminInterceptor implements  HandlerInterceptor {
 
-    @Autowired
-    private DynamicDataSource dynamicDataSource;
-
     /**
      * 在请求处理之前进行调用（Controller方法调用之前）
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        System.out.println("拦截器");
         try {
             String d = request.getParameter("d");
-            if("1".equals(d)) {
-                changeDatabase();
+            if(StringUtils.isNotEmpty(d)) {
+                DBContextHolder.setDataSource(d);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,20 +50,5 @@ public class AdminInterceptor implements  HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-    }
-
-    private void changeDatabase() throws Exception {
-        //创建数据源
-        DataSource d  = new DataSource();
-        d.setDatasourceId("1");
-        d.setCode("1");
-        d.setUrl("jdbc:mysql://localhost:3306/test1?useUnicode=true&characterEncoding=utf-8&useSSL=false");
-        d.setUserName("root");
-        d.setPassWord("123456");
-        d.setDatabasetype("1");
-        dynamicDataSource.createDataSourceWithCheck(d);
-
-        //切换数据源
-        DBContextHolder.setDataSource(d.getDatasourceId());
     }
 }
