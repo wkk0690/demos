@@ -6,7 +6,6 @@
         <groupId>com.alibaba</groupId>
         <artifactId>demo-spring-cloud-alibaba</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/>
     </parent>
     <groupId>com.alibaba</groupId>
     <artifactId>alibaba-server</artifactId>
