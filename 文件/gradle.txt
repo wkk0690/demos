@@ -1,0 +1,23 @@
+https://gradle.org/  下载
+
+https://www.cnblogs.com/kaituorensheng/p/6941460.html
+2. 转换
+2.1 在项目根目录（存放pom文件位置）下执行
+gradle init
+2.2 添加下面到 build.gradle
+
+apply plugin: 'java'
+apply plugin: 'maven'
+  
+group = 'com.bazlur.app'
+// artifactId is taken by default, from folder name
+version = '0.1-SNAPSHOT'
+  
+dependencies {
+compile 'commons-lang:commons-lang:2.3'
+}
+注：group、version按实际写
+
+2.3 执行
+gradle install
+2.4 在build/poms下生成了pom-default.xml，把它修改为pom.xml，放到项目根目录下　
