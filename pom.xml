@@ -18,6 +18,7 @@
         <module>demo-dubbo-spring-cloud</module>
         <module>demo-mul-datasource</module>
         <module>demo8</module>
+        <module>spring-cloud-alibaba-samples</module>
     </modules>
 
     <properties>
