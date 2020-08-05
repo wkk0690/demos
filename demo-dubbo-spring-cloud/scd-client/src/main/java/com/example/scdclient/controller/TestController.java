@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author wkk
  * @create 2020/07/27
- * @desc
+ * @desc 50万3个字段差1s, 10万3字段差200毫秒
  */
 @RestController
 public class TestController {
@@ -21,6 +21,10 @@ public class TestController {
     @Reference
     private UserService userService;
 
+    /**
+     * feign调用
+     * @return
+     */
     @RequestMapping("/test")
     public String test(){
         long t1 = System.currentTimeMillis();
@@ -30,6 +34,10 @@ public class TestController {
         return String.format("%s(%s)", "时间", (t2 - t1));
     }
 
+    /**
+     * dubbo
+     * @return
+     */
     @RequestMapping("/test1")
     public String test1(){
         long t1 = System.currentTimeMillis();
