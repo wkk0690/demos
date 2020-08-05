@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @desc 50万3个字段差1s, 10万3字段差200毫秒
  */
 @RestController
-public class TestController {
+@RequestMapping("/user")
+public class UserClientController {
 
     @Autowired
     private ScdServerFeign scdServerFeign;
