@@ -1,13 +1,36 @@
+server:
+  port: 18081
+
 dubbo:
   registry:
-    #   The Spring Cloud Dubbo's registry extension
-    ##  the default value of dubbo-provider-services is "*", that means to subscribe all providers,
-    ##  thus it's optimized if subscriber specifies the required providers.
+    # 挂载到 Spring Cloud 注册中心
     address: spring-cloud://localhost
-#   The traditional Dubbo's registry also is supported
-#   address: zookeeper://127.0.0.1:2181
   cloud:
-    # The subscribed services in consumer side
     subscribed-services: scd-server
   consumer:
     check: false
+
+spring:
+  application:
+    name: scd-client
+  cloud:
+    nacos:
+      # Nacos 服务注册发现
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+logging:
+  level:
+    com.example.scdclient: debug
+    root: info
+  path: ./logs
+
+feign:
+  client:
+    config:
+      #全局配置 feign调用日志打印 (none, basic, headers, full)
+      default:
+        loggerlevel: full

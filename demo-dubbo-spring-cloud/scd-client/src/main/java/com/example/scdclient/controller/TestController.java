@@ -1,7 +1,8 @@
 package com.example.scdclient.controller;
 
+import com.example.scdapi.api.UserService;
 import com.example.scdclient.feign.ScdServerFeign;
-import com.example.scdclient.feign.ScdServerFeign1;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,13 +17,15 @@ public class TestController {
 
     @Autowired
     private ScdServerFeign scdServerFeign;
-    @Autowired
-    private ScdServerFeign1 scdServerFeign1;
+
+    @Reference
+    private UserService userService;
 
     @RequestMapping("/test")
     public String test(){
         long t1 = System.currentTimeMillis();
-        String echo = scdServerFeign.echo("test1");
+        String test = scdServerFeign.test();
+        System.out.println(test);
         long t2 = System.currentTimeMillis();
         return String.format("%s(%s)", "时间", (t2 - t1));
     }
@@ -30,7 +33,8 @@ public class TestController {
     @RequestMapping("/test1")
     public String test1(){
         long t1 = System.currentTimeMillis();
-        String echo = scdServerFeign1.params("test2");
+        String test = userService.test();
+        System.out.println(test);
         long t2 = System.currentTimeMillis();
         return String.format("%s(%s)", "时间", (t2 - t1));
     }
