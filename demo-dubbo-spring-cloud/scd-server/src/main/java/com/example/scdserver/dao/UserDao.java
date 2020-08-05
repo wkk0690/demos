@@ -17,7 +17,7 @@ public class UserDao {
 
     public String test() {
         List<User> list = new ArrayList<>();
-        for(int i = 0; i < 500000; i ++) {
+        for(int i = 0; i < 50000; i ++) {
             list.add(User.builder().id(i + "").username("jack" + i).password(i + "").build());
         }
         return JSONObject.toJSONString(list);

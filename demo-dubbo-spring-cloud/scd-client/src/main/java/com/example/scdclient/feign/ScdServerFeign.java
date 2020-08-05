@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("scd-server")
 public interface ScdServerFeign {
 
-    @GetMapping("/student/test")
+    @GetMapping("/user/test")
     String test();
 }

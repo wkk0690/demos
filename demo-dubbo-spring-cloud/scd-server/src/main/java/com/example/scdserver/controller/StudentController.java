@@ -1,6 +1,7 @@
 package com.example.scdserver.controller;
 
-import com.example.scdserver.dao.UserDao;
+import com.example.scdapi.api.StudentService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @desc
  */
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/student")
+public class StudentController {
 
-    @Autowired
-    private UserDao userDao;
+    @Reference
+    private StudentService studentService;
 
     @RequestMapping("/test")
     public String test(){
-        return userDao.test();
+        return studentService.testStudent();
     }
 }

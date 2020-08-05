@@ -15,7 +15,9 @@ dubbo:
     # 挂载到 Spring Cloud 注册中心
     address: spring-cloud://localhost
   cloud:
-    subscribed-services: ""
+    subscribed-services: scd-client
+  consumer:
+    check: false
 
 spring:
   application:
