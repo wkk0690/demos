@@ -17,6 +17,7 @@
     <modules>
         <module>scd-client</module>
         <module>scd-server</module>
+        <module>scd-api</module>
     </modules>
 
     <properties>
