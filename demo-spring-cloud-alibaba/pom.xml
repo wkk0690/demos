@@ -20,8 +20,8 @@
 
     <modules>
         <module>alibaba-config</module>
-        <module>alibaba-client</module>
-        <module>alibaba-server</module>
+        <module>alibaba-consumer</module>
+        <module>alibaba-provider</module>
         <module>alibaba-gateway</module>
     </modules>
 
