@@ -9,6 +9,8 @@ package com.example.demo.live;
  * https://blog.csdn.net/iamniconico/article/details/80581937 文章
  * 放到tomcat中, 并且 开启flash
  * https://www.jianshu.com/p/590bc391a213 No compatible source was found for this video
+ *
+ * http://localhost 访问red5提供的demo, 具体端口看red5/conf/red5.properties
  */
 public class zhibo {
 }
