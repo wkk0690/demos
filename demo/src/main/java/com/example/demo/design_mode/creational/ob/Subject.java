@@ -1,4 +1,4 @@
-package com.example.demo.design_mode.ob;
+package com.example.demo.design_mode.creational.ob;
 
 /**
  * @author OX574B4B

@@ -1,0 +1,13 @@
+linux数据目录迁移
+https://blog.csdn.net/wohiusdashi/article/details/89358071 #CentOS7下安装mysql5.7
+https://blog.csdn.net/xiaolong_4_2/article/details/82929739  #数据目录迁移
+
+set global validate_password_length=6;
+set global validate_password_policy=0;
+ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';  #修改连接密码
+GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "123456"; #修改远程密码
+flush privileges;
+
+cat /var/log/mysqld.log #mysql日志查看
+
+chmod -R 777 /data/mysql/data

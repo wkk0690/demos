@@ -96,7 +96,7 @@ public class JwtUtil {
     public static void main(String[] args) throws Exception {
         //生成一个token,登陆成功给客户端
         JwtUtil jwt = new JwtUtil();
-        String token = jwt.createJWT("1", "name", 1000);
+        String token = jwt.createJWT("1", "name", 10000);
         System.out.println(token);
 
 
