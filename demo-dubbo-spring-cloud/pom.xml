@@ -10,7 +10,7 @@
     <groupId>com.example</groupId>
     <artifactId>demo-dubbo-spring-cloud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo4</name>
+    <name>demo-dubbo-spring-cloud</name>
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
 
