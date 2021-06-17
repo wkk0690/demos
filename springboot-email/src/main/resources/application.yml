@@ -1,0 +1,12 @@
+spring:
+  mail:
+    host: smtp.126.com
+    username: wkk0690@126.com
+    password: VXKJMJRHXHLGMZSS #*****  //授权码
+    default-encoding: UTF-8
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.starttls.required: true
+      mail.smtp.ssl.enable: true
+      mail.display.sendmail: spring-boot-demo
