@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.alibaba</groupId>
-        <artifactId>demo-spring-cloud-alibaba</artifactId>
+        <artifactId>springcloud-alibaba</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>com.alibaba</groupId>
