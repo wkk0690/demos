@@ -14,7 +14,6 @@
         <module>demo-spring-cloud-alibaba</module>
         <module>demo</module>
         <module>demo1</module>
-        <module>demo-oauth2</module>
         <module>demo2</module>
         <module>demo3</module>
         <module>demo-dubbo-spring-cloud</module>
