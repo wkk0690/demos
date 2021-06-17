@@ -5,6 +5,7 @@ import com.example.scdclient.feign.ScdServerFeign;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,24 +28,18 @@ public class UserClientController {
      * @return
      */
     @RequestMapping("/test")
-    public String test(){
+    public String test(@RequestParam(defaultValue = "10000") int num){
         long t1 = System.currentTimeMillis();
-        String test = scdServerFeign.test();
-        System.out.println(test);
+        String feignReuslt = scdServerFeign.test(num);
+        //System.out.println(feignReuslt);
         long t2 = System.currentTimeMillis();
-        return String.format("%s(%s)", "时间", (t2 - t1));
-    }
+        long feignTime = t2 - t1;
 
-    /**
-     * dubbo
-     * @return
-     */
-    @RequestMapping("/test1")
-    public String test1(){
-        long t1 = System.currentTimeMillis();
-        String test = userService.test();
-        System.out.println(test);
-        long t2 = System.currentTimeMillis();
-        return String.format("%s(%s)", "时间", (t2 - t1));
+        long t3 = System.currentTimeMillis();
+        String dubboResult = userService.test(num);
+        //System.out.println(dubboResult);
+        long t4 = System.currentTimeMillis();
+        long dubboTime = t4 - t3;
+        return String.format("feign-dubbo时间差: %s", (feignTime - dubboTime));
     }
 }

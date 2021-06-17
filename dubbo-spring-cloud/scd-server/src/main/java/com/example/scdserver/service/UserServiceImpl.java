@@ -11,14 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @create 2020/08/05
  * @desc
  */
-@Service
+@Service(timeout = 500000)
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
 
     @Override
-    public String test() {
-        return userDao.test();
+    public String test(int num) {
+        return userDao.test(num);
     }
 }

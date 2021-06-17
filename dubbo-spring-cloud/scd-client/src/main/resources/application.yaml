@@ -43,3 +43,10 @@ feign:
       #全局配置 feign调用日志打印 (none, basic, headers, full)
       default:
         loggerlevel: full
+        connectTimeout: 50000
+        readTimeout: 50000
+
+ribbon: # 请求连接的超时时间 默认的时间为 1 秒
+  ConnectTimeout: 50000
+  # 请求处理的超时时间
+  ReadTimeout: 50000

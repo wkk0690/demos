@@ -3,6 +3,7 @@ package com.example.scdserver.controller;
 import com.example.scdserver.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -18,7 +19,7 @@ public class UserController {
     private UserDao userDao;
 
     @RequestMapping("/test")
-    public String test(){
-        return userDao.test();
+    public String test(int num){
+        return userDao.test(num);
     }
 }

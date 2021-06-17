@@ -15,9 +15,9 @@ import java.util.List;
 @Repository
 public class UserDao {
 
-    public String test() {
+    public String test(int num) {
         List<User> list = new ArrayList<>();
-        for(int i = 0; i < 50000; i ++) {
+        for(int i = 0; i < num; i ++) {
             list.add(User.builder().id(i + "").username("jack" + i).password(i + "").build());
         }
         return JSONObject.toJSONString(list);

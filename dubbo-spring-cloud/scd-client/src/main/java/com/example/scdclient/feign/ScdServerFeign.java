@@ -14,5 +14,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface ScdServerFeign {
 
     @GetMapping("/user/test")
-    String test();
+    String test(@RequestParam("num") int num);
 }
