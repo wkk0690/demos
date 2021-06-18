@@ -201,6 +201,12 @@
             <artifactId>svnkit</artifactId>
             <version>1.9.2</version>
         </dependency>
+        <!-- git -->
+        <dependency>
+            <groupId>org.eclipse.jgit</groupId>
+            <artifactId>org.eclipse.jgit</artifactId>
+            <version>5.5.1.201910021850-r</version>
+        </dependency>
 
         <!-- rocketmq -->
         <dependency>
@@ -237,12 +243,16 @@
             <artifactId>pinyin4j</artifactId>
             <version>2.5.0</version>
         </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+        </dependency>
     </dependencies>
 
-
-
     <repositories>
-
         <!--
          关于远程仓库的配置，下面的我会详细解释，这里我们只要知道，中央仓库的id为central，
          远程url地址为http://repo.maven.apache.org/maven2，它关闭了snapshot版本构件下载的支持。
