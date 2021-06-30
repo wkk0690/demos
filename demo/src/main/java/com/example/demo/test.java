@@ -2,23 +2,25 @@ package com.example.demo;
 
 import com.example.demo.util.HanyupinyinUtil;
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class test {
 
     public static void main(String[] args) throws  Exception {
 
-        Map<String, String> map = new HashMap();
-        map.put("1", "1");
-        map.put("2", "2");
-        map.put("3", "3");
-        for (Map.Entry<String,String> entry : map.entrySet()){
-             String key = entry.getKey();
-             String value = entry.getValue();
-        }
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        Integer reduce = list.stream().reduce(1, (a, b) -> a + b);
+        System.out.println(reduce);
 
-
+        list.forEach(e -> {
+            if(e == 3) {
+                return;
+            }
+            System.out.println(e);
+        });
 
 
 //        demo1();
