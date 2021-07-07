@@ -15,7 +15,7 @@
         <module>demo</module>
         <module>demo1</module>
         <module>demo4</module>
-        <module>security-oauth2</module>
+        <module>oauth2</module>
         <module>dubbo-spring-cloud</module>
         <module>mybatis-mul-datasource</module>
         <module>demo8</module>

@@ -10,7 +10,7 @@
     <groupId>com.example</groupId>
     <artifactId>oauth-code</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>oauth-code</name>
+    <name>cloud-oauth-code</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
