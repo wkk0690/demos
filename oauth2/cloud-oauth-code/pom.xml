@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.example</groupId>
-        <artifactId>security-oauth2</artifactId>
+        <artifactId>oauth2</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>oauth-code</artifactId>
+    <artifactId>cloud-oauth-code</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>cloud-oauth-code</name>
     <description>Demo project for Spring Boot</description>
