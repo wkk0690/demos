@@ -12,7 +12,7 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: alibaba-server
-          uri: lb://alibaba-server
+        - id: alibaba-consumer
+          uri: lb://alibaba-consumer
           predicates:
-            - Path=/server/**
+            - Path=/consumer/**

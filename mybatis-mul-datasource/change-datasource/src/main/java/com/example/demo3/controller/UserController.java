@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -92,17 +93,20 @@ public class UserController {
     @RequestMapping("/test2")
     public List<User> test2() throws Exception {
         List<User> list = userService.list();
-        list.forEach(dataSource1 -> System.out.println(dataSource1.getUsername()));
+        list.forEach(u -> System.out.println(u.getUsername()));
         System.out.println("---------------------");
-//        User user = User.builder().id("333").username("333").password("333").build();
-//        userService.insert(user);
+
+        //切换数据库test1
+        DBContextHolder.setDataSource("1");
 
         List<User> list1=userService.list();
-        list1.forEach(dataSource1 -> System.out.println(dataSource1.getUsername()));
+        list1.forEach(u -> System.out.println(u.getUsername()));
 
-//        User user1 = User.builder().id("444").username("444").password("444").build();
-//        userService.insert(user1);
+        //动态添加test2, 切换到test2
+        changeDatabase();
 
+        List<User> list2=userService.list();
+        list2.forEach(u -> System.out.println(u.getUsername()));
         return null;
     }
 
@@ -139,5 +143,19 @@ public class UserController {
         }.run();
         Thread.sleep(3000);
         return list[0];
+    }
+
+    private void changeDatabase() throws Exception {
+        //创建数据源
+        Map map  = new HashMap();
+        map.put("datasourceId", "2");
+        map.put("url", "jdbc:mysql://localhost:3306/test2?useUnicode=true&characterEncoding=utf-8&useSSL=false");
+        map.put("username", "root");
+        map.put("password", "123456");
+
+        dynamicDataSource.createDataSource(map);
+
+        //切换数据源
+        DBContextHolder.setDataSource(map.get("datasourceId").toString());
     }
 }
