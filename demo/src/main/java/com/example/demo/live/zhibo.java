@@ -1,7 +1,7 @@
 package com.example.demo.live;
 
 /**
- * @author wkk
+ * @author 0X574B4B
  * @create 2020/05/29
  * @desc
  * https://github.com/Red5/red5-server  red5

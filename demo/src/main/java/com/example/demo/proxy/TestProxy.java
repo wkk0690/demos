@@ -4,7 +4,7 @@ import com.example.demo.proxy.cglib.CglibProxyFactory;
 import com.example.demo.proxy.jdk.JDKProxyFactory;
 
 /**
- * @author wkk
+ * @author 0X574B4B
  * @create 2020/09/07
  * @desc
  */

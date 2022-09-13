@@ -4,7 +4,7 @@ import com.example.scdapi.api.StudentService;
 import org.apache.dubbo.config.annotation.Service;
 
 /**
- * @author wkk
+ * @author 0X574B4B
  * @create 2020/08/05
  * @desc
  */

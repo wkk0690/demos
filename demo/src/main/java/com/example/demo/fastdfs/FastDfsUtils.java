@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.Properties;
 
 /**
- * @author wkk
+ * @author 0X574B4B
  * @create 2020/07/09
  * @desc
  * https://github.com/happyfish100/fastdfs/wiki 安装文档

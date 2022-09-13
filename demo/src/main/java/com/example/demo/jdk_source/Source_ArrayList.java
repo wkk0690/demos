@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.logging.Handler;
 
 /**
- * @author wkk
+ * @author 0X574B4B
  * @create 2020/05/13
  * @desc arraylist的源码分析
  *  https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/collection/ArrayList-Grow.md
