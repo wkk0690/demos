@@ -11,16 +11,15 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>database</module>
         <module>springcloud-alibaba</module>
         <module>demo</module>
         <module>demo1</module>
         <module>demo4</module>
-        <module>oauth2</module>
         <module>dubbo-spring-cloud</module>
         <module>mybatis-mul-datasource</module>
         <module>demo8</module>
         <module>springboot-email</module>
-        <module>springboot-admin</module>
         <module>springboot-actuator</module>
     </modules>
 
