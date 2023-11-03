@@ -17,8 +17,8 @@ spring:
 
   application:
     name: itcast-rocketmq
-  rocketmq:
-    nameServer: 127.0.0.1:9876
-    producer:
-      group: my-group
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: my-group
 
