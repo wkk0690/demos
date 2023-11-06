@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class TestController {
 
-    @RequestMapping("/a")
-    public String a() {
-        return "123";
+    @RequestMapping("wordCount1")
+    public Object wordCount1() {
+        return "12";
     }
 }
