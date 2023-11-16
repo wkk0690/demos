@@ -13,10 +13,6 @@ public class TestController {
 
     @RequestMapping("/test")
     public String test() {
-        var a = new String();
-
-
-
         return "123";
     }
 }

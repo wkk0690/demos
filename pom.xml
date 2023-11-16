@@ -21,6 +21,7 @@
         <module>demo8</module>
         <module>springboot-email</module>
         <module>springboot-actuator</module>
+        <module>openai</module>
     </modules>
 
     <properties>

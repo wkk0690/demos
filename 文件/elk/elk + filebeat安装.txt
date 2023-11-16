@@ -1,8 +1,8 @@
 https://www.cnblogs.com/mushou/p/9638818.html
 
 修改linux的系统参数，否则启动ELK容器会失败
-1.       打开文件/etc/sysctl.conf，添加下面一行内容：
-vi  /etc/sysctl.conf
+1.打开文件/etc/sysctl.conf，添加下面一行内容：
+vi  /etc/sysctl.conf
 vm.max_map_count=655360
 2. 加载sysctl配置，执行命令：sysctl -p
 参数设置完成，咱们可以开始实战了！
