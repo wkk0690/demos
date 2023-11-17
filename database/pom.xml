@@ -12,5 +12,6 @@
         <module>hbase</module>
         <module>mongodb</module>
         <module>neo4j</module>
+        <module>mysql</module>
     </modules>
 </project>
