@@ -20,7 +20,7 @@
     </properties>
 
     <modules>
-
+        <module>demo2</module>
     </modules>
 
     <build>

@@ -21,7 +21,7 @@ export default {
     }
   },
   mounted() {
-    this.openai = new OpenAI({ apiKey: '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', dangerouslyAllowBrowser: true });
+    this.openai = new OpenAI({ apiKey: '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', dangerouslyAllowBrowser: true });
   },
   methods: {
     async sendAi() {

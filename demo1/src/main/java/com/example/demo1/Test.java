@@ -1,7 +1,5 @@
 package com.example.demo1;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Test
@@ -12,8 +10,6 @@ import java.util.Map;
 public class Test {
 
     public static void main(String[] args) {
-        Map map = new HashMap<>();
-        map.put(null, null);
-        System.out.println(map.get(1));
+
     }
 }

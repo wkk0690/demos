@@ -1,8 +1,10 @@
 package com.example.demo.java;
 
+import com.alibaba.fastjson.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -26,6 +28,28 @@ import java.util.stream.Stream;
 public class Java8 {
 
     @Test
+    public void demo_group() {
+        List<Patient> list = new ArrayList<>();
+        list.add(Patient.builder().name("111").build());
+        list.add(Patient.builder().name("222").build());
+        Map<String, List<Patient>> group = list.stream().collect(Collectors.groupingBy(Patient::getName));
+        System.out.println(JSONObject.toJSONString(group));
+
+        ConcurrentMap<String, List<Patient>> group2 = list.parallelStream().collect(Collectors.groupingByConcurrent(Patient::getName));
+        System.out.println(JSONObject.toJSONString(group2));
+    }
+
+    @Test
+    public void demo_peek() {
+        Stream.of("one", "two", "three", "four")
+                .filter(e -> e.length() > 3)
+                .peek(e -> System.out.println("Filtered value: " + e))
+                .map(String::toUpperCase)
+                .peek(e -> System.out.println("Mapped value: " + e))
+                .collect(Collectors.toList());
+    }
+
+    @Test
     public void demo_4(){
         //模拟10000条数据 循环打印测试
         List<Integer> list = new ArrayList();
@@ -46,36 +70,45 @@ public class Java8 {
 
     }
 
+    /**
+     * Runtime.getRuntime().availableProcessors() 逻辑处理器数（单个物理处理器相当于拥有两个逻辑处理器）
+     */
     @Test
     public void demo_3(){
-        int max = 1000000;
+        int max = 50;
         List<String> values = new ArrayList<>(max);
         for(int i = 0; i < max; i ++){
             values.add(UUID.randomUUID().toString());
         }
-        Collections.shuffle(values);
 
+        //parallelStream 共用线程池
+        //System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "5"); //设置线程数
         long t0 = System.currentTimeMillis();
-        long count = values.parallelStream().sorted().count();
+        values.parallelStream().map(item -> {
+            try {
+                System.out.println(Thread.currentThread().getName());
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return 1;
+        }).collect(Collectors.toList());
         long t1 = System.currentTimeMillis();
-        //long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
         System.out.println(t1 - t0);
-    }
 
-    @Test
-    public void demo_2(){
-        int max = 1000000;
-        List<String> values = new ArrayList<>(max);
-        for(int i = 0; i < max; i ++){
-            values.add(UUID.randomUUID().toString());
-        }
-        Collections.shuffle(values);
-        //串行
-        long t0 = System.currentTimeMillis();
-        long count = values.stream().sorted().count();
-        long t1 = System.currentTimeMillis();
-        //long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
-        System.out.println(t1 - t0);
+        //stream
+        long t2 = System.currentTimeMillis();
+        values.stream().map(item -> {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return 1;
+        }).collect(Collectors.toList());
+        long t3 = System.currentTimeMillis();
+        System.out.println(t3 - t2);
+
 
     }
 
