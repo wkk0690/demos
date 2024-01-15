@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * https://jingyan.baidu.com/article/925f8cb8ef722181dde0569f.html
  */
-@RestController
+@RestController("RemoteDebugTestController")
 @RequestMapping("/test")
 @Slf4j
 public class TestController {

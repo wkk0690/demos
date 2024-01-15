@@ -1,5 +1,6 @@
 package com.example.demo.socket.client.jdk;
 
+import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -21,10 +22,8 @@ import java.net.URI;
  * <version>1.3.8</version>
  * </dependency>
  */
+@Slf4j
 public class ClientTest {
-
-    private static final Logger logger = LoggerFactory.getLogger(ClientTest.class);
-
 
     public static void main(String[] args) throws Exception {
 //        String url = "ws://127.0.0.1:6003/api/shake?token='C5AA320520A64DE6BAF106D88F478B636EBAECDB64F0412AB166782BB6CC4666'";
@@ -72,7 +71,7 @@ public class ClientTest {
          * 连接已经关闭或者根本没有建立。The connection has been closed or could not be opened.
          */
         while (!webSocketClient.getReadyState().equals("1")) {
-            logger.info("正在连接...");
+            log.info("正在连接...");
         }
     }
 }

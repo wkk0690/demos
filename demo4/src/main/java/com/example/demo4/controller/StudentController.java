@@ -1,11 +1,12 @@
 package com.example.demo4.controller;
 
-import com.example.demo4.po.Test;
-import com.example.demo4.service.TestService;
+import com.example.demo4.po.Student;
+import com.example.demo4.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -14,14 +15,19 @@ import java.util.UUID;
  * @desc
  */
 @RestController
-public class TestController {
+public class StudentController {
 
     @Autowired
-    private TestService testService;
+    private StudentService testService;
+
+    @RequestMapping("/list")
+    public List<Student> list(){
+        return testService.selectList();
+    }
 
     @RequestMapping("/add")
     public String add(){
-        Test test = new Test();
+        Student test = new Student();
         test.setId(UUID.randomUUID().toString().replace("-", ""));
         test.setName("jack");
         testService.save(test);
@@ -30,7 +36,7 @@ public class TestController {
 
     @RequestMapping("/edit")
     public String edit(){
-        Test test = testService.getById("6c7a99fd51d34db4b8d32bf37024bf13");
+        Student test = testService.getById("6c7a99fd51d34db4b8d32bf37024bf13");
         test.setName("rose");
         testService.updateById(test);
         return "123";
@@ -38,7 +44,7 @@ public class TestController {
 
     @RequestMapping("/edit1")
     public String edit1(){
-        Test test = testService.getById("6c7a99fd51d34db4b8d32bf37024bf13");
+        Student test = testService.getById("6c7a99fd51d34db4b8d32bf37024bf13");
         test.setName("rose");
         testService.editById(test);
         return "123";

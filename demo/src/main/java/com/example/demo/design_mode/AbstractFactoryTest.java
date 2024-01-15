@@ -17,23 +17,19 @@ import java.io.File;
  */
 public class AbstractFactoryTest {
     public static void main(String[] args) {
-        try {
-            Farm f;
-            Animal a;
-            Plant p;
-            f = (Farm) ReadXML.getObject();
-            a = f.newAnimal();
-            p = f.newPlant();
-            a.show();
-            p.show();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        Farm f;
+        Animal a;
+        Plant p;
+        f = (Farm) ReadXML.getObject();
+        a = f.newAnimal();
+        p = f.newPlant();
+        a.show();
+        p.show();
     }
 }
 //抽象产品：动物类
 interface Animal {
-    public void show();
+    void show();
 }
 //具体产品：马类
 class Horse implements Animal {

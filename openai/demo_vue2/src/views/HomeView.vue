@@ -30,15 +30,27 @@ export default {
     };
   },
   mounted() {
-    this.openai = new OpenAI({ apiKey: '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', dangerouslyAllowBrowser: true });
+    this.openai = new OpenAI({ apiKey: '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', dangerouslyAllowBrowser: true, openai_proxy: 'http://113.31.119.224:8080' });
   },
   methods: {
+    async sendDalle3({content}) {
+      const completion = await this.openai.chat.completions.create({
+        messages: [{ role: "system", content: content }],
+        size: "1024x1024",
+        quality: "standard",
+        model: "dall-e-3",
+      });
+      this.messages = [...this.messages, {
+        id: this.messages.length + 1,
+        sender: 'ai',
+        timestamp: new Date().toLocaleTimeString(),
+        content: completion.choices[0].message.content}];
+    },
     async sendAi({content}) {
       const completion = await this.openai.chat.completions.create({
         messages: [{ role: "system", content: content }],
         model: "gpt-3.5-turbo",
       });
-      console.log(completion.choices[0].message.content);
       this.messages = [...this.messages, {
         id: this.messages.length + 1,
         sender: 'ai',
@@ -56,6 +68,7 @@ export default {
         this.messages.push(newMessage);
         this.inputMessage = '';
         this.sendAi(newMessage);
+        // this.sendDalle3(newMessage);
       }
     }
   }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo4.dao.StudentMapper">
+    
+    <resultMap type="Student" id="AppDrugCategoryResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <collection  property="courses"   javaType="java.util.List" resultMap="CourseResult" />
+    </resultMap>
+
+    <resultMap id="CourseResult" type="Course">
+        <id     property="id"       column="course_id"        />
+        <result property="name"     column="course_name"      />
+        <result property="studentId"     column="student_id"      />
+    </resultMap>
+
+    <select id="selectList1" resultMap="AppDrugCategoryResult">
+        select a.id, a.name,
+               b.id as course_id, b.name as course_name, b.student_id
+        from student a
+        left join course b on b.student_id = a.id
+    </select>
+</mapper>
