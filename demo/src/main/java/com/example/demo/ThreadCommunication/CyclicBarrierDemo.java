@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
  * @author 0X574B4B
  * @create 2018-08-29 18:45
  * @desc 线程通信方式一: CyclicBarrier
+ * 和CountDownLatch区别，CyclicBarrier可以重复使用 barrier.reset();
  */
 public class CyclicBarrierDemo {
 
@@ -46,9 +47,7 @@ class Runner implements Runnable {
             Thread.sleep(new Random().nextInt(time));
             System.out.println(name + ": Iam ready...");
             barrier.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (BrokenBarrierException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println(name + " run ...");

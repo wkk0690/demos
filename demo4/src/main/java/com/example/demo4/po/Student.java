@@ -37,6 +37,8 @@ public class Student {
     @TableField(fill = FieldFill.UPDATE)
     private Date updateTime;
 
+    private Long num;
+
     private List<Course> courses;
 
 }

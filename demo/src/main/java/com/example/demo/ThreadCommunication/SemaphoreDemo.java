@@ -21,10 +21,14 @@ public class SemaphoreDemo {
 
     for (int i = 0; i < threadCount; i++) {
       final int threadnum = i;
-      threadPool.execute(() -> {// Lambda 表达式的运用
+      threadPool.execute(() -> {
         try {
           semaphore.acquire();// 获取一个许可，所以可运行线程数量为20/1=20
-          test(threadnum);
+
+          Thread.sleep(1000);// 模拟请求的耗时操作
+          System.out.println("threadnum:" + threadnum);
+          Thread.sleep(1000);// 模拟请求的耗时操作
+
           semaphore.release();// 释放一个许可
         } catch (InterruptedException e) {
           // TODO Auto-generated catch block
@@ -35,11 +39,5 @@ public class SemaphoreDemo {
     }
     threadPool.shutdown();
     System.out.println("finish");
-  }
-
-  public static void test(int threadnum) throws InterruptedException {
-    Thread.sleep(1000);// 模拟请求的耗时操作
-    System.out.println("threadnum:" + threadnum);
-    Thread.sleep(1000);// 模拟请求的耗时操作
   }
 }

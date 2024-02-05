@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap type="Student" id="AppDrugCategoryResult">
         <result property="id"    column="id"    />
         <result property="name"    column="name"    />
+        <result property="num"    column="num"    />
         <collection  property="courses"   javaType="java.util.List" resultMap="CourseResult" />
     </resultMap>
 
@@ -17,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <select id="selectList1" resultMap="AppDrugCategoryResult">
-        select a.id, a.name,
+        select a.id, a.name, a.num,
                b.id as course_id, b.name as course_name, b.student_id
         from student a
         left join course b on b.student_id = a.id

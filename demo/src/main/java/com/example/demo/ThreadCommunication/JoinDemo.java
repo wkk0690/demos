@@ -8,8 +8,22 @@ package com.example.demo.ThreadCommunication;
 public class JoinDemo {
 
     public static void main(String[] args) throws InterruptedException {
-        Thread t1 = new Thread(new Runner1("JACK", 7000));
-        Thread t2 = new Thread(new Runner1("rose", 5000));
+        Thread t1 = new Thread(() -> {
+            System.out.println(" 开始...");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        Thread t2 = new Thread(() -> {
+            System.out.println(" 开始...");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
 
         t1.start();
         t2.start();
@@ -22,27 +36,5 @@ public class JoinDemo {
         t2.join(); //等待线程2终止
 
         System.out.println("main voer");
-    }
-}
-
-class Runner1 implements Runnable {
-
-    private int time;
-
-    private String name;
-
-    public Runner1(String name, int time) {
-        this.time = time;
-        this.name = name;
-    }
-
-    @Override
-    public void run() {
-        try {
-            System.out.println(name + " 开始...");
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

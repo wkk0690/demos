@@ -21,39 +21,33 @@ public class PipedDemo {
         //输入输出流建立连接
         writer.connect(reader);
 
-        Thread t1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    for (int i = 0; i < 10; i++) {
-                        writer.write(i + "");
-                        System.out.println("我写");
-                        Thread.sleep(10);
-                    }
-                } catch (Exception e) {
+        Thread t1 = new Thread(() -> {
+            try {
+                for (int i = 0; i < 10; i++) {
+                    writer.write(i + "");
+                    System.out.println("我写");
+                    Thread.sleep(10);
+                }
+            } catch (Exception e) {
 
-                } finally {
-                    try {
-                        writer.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            } finally {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
 
-        Thread t2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int msg = 0;
-                try {
-                    while ((msg = reader.read()) != -1) {
-                        System.out.println("我读");
-                        System.out.println(msg);
-                    }
-                } catch (Exception e) {
-
+        Thread t2 = new Thread(() -> {
+            int msg;
+            try {
+                while ((msg = reader.read()) != -1) {
+                    System.out.println("我读");
+                    System.out.println(msg);
                 }
+            } catch (Exception e) {
+
             }
         });
 

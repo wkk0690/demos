@@ -10,19 +10,12 @@ import java.util.Queue;
 public class WaitNotifyDemo {
     public static void main(String[] args) throws InterruptedException {
         TaskQueue queue = new TaskQueue();
-        new Thread(){
-            @Override
-            public void run() {
-                queue.getTask();
-            }
-        }.start();
-        new Thread(){
-            @Override
-            public void run() {
-                queue.addTask("123");
-            }
-        }.start();
-
+        new Thread(() -> {
+            queue.getTask();
+        }).start();
+        new Thread(() -> {
+            queue.addTask("123");
+        }).start();
     }
 }
 

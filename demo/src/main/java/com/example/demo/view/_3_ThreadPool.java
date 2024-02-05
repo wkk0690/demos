@@ -6,11 +6,6 @@ import java.util.concurrent.*;
 
 /**
  * Java线程池的原理？线程池有哪些？线程池工厂有哪些线程池类型，及其线程池参数是什么？
- * <p>
- * 原理:
- * <p>
- * <p>
- * <p>
  * 参数:
  * corePoolSize：
  * 核心池的大小，这个参数跟后面讲述的线程池的实现原理有非常大的关系。在创建了线程池后，默认情况下，线程池中并没有任何线程，
@@ -40,24 +35,29 @@ import java.util.concurrent.*;
  * 　　ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。
  * 　　ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）
  * 　　ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务
+ *
+ * FixedThreadPool(n)：创建一个数量固定的线程池，超出的任务会在队列中等待空闲的线程，可用于控制程序的最大并发数。
+ * CachedThreadPool()：短时间内处理大量工作的线程池，会根据任务数量产生对应的线程，并试图缓存线程以便重复使用，如果限制 60 秒没被使用，则会被移除缓存。
+ * SingleThreadExecutor()：创建一个单线程线程池。
+ * ScheduledThreadPool(n)：创建一个数量固定的线程池，支持执行定时性或周期性任务。
+ * SingleThreadScheduledExecutor()：此线程池就是单线程的 newScheduledThreadPool。
+ * WorkStealingPool(n)：Java 8 新增创建线程池的方法，创建时如果不设置任何参数，则以当前机器处理器个数作为线程个数，此线程池会并行处理任务，不能保证执行顺序。
  */
 public class _3_ThreadPool {
-
-    /**
-     * 1.newSingleThreadExecutor()
-     * 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务都是按照指定的顺序（FIFO，LIFO，优先级）执行
-     */
-    @Test
-    public void demo1() {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-    }
 
     /**
      *
      */
     @Test
     public void demo2() {
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        //ExecutorService executorService = Executors.newFixedThreadPool(2);
+
+        ExecutorService executorService1 = Executors.newWorkStealingPool();
+        for(int i  = 0; i < 100; i++) {
+            executorService1.execute(() -> {
+                System.out.println(Thread.currentThread().getName());
+            });
+        }
     }
 
 }

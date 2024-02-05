@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 import java.util.stream.Collectors;
 
 /**
@@ -20,6 +21,40 @@ import java.util.stream.Collectors;
 public class Test {
 
     public static void main(String[] args) throws Exception {
+        //extracted();
+        //extracted1();
+
+        List list = new ArrayList();
+
+        handleRecursion(list);
+    }
+
+    private static void handleRecursion(List list) {
+    }
+
+    private static void extracted1() throws InterruptedException {
+        List list = new ArrayList();
+        int len = 100000;
+        CountDownLatch latch = new CountDownLatch(len);
+        for(int i = 0; i < len; i ++) {
+            new Thread() {
+                @Override
+                public void run() {
+                    handleAdd(list, "1");
+                    //list.add("1");
+                    latch.countDown();
+                }
+            }.start();
+        }
+        latch.await();
+        System.out.println(list.size());
+    }
+
+    public synchronized static void handleAdd(List list, String s) {
+        list.add(s);
+    }
+
+    private static void extracted() throws Exception {
         List<String> list = new ArrayList<>();
 
         for(int j = 0; j < 1491; j ++) {
@@ -39,7 +74,6 @@ public class Test {
                 list.add(job.getString("ename"));
             }
         }
-
 
 
         String s1 = Arrays.toString(list.toArray());

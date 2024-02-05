@@ -1,69 +1,43 @@
 <template>
-  <div class="chat-wrapper">
-    <div class="chat-messages">
-      <div class="message" v-for="message in messages" :key="message.id">
-        <div class="message-sender">{{ message.sender }}</div>
-        <div class="message-content">{{ message.content }}</div>
-      </div>
-    </div>
-    <div class="chat-input"><input type="text" v-model="newMessage" @keyup.enter="sendMessage" placeholder="输入消息...">
-      <button @click="sendMessage">发送</button>
-    </div>
+  <div class="player-container">
+    <video ref="myPlayer" id="myVideo"></video>
   </div>
 </template>
-<script> export default {
+<script>
+
+import 'video.js/dist/video-js.css'; // 导入video.js的CSS样式
+import 'video.js/dist/lang/zh-cn.js'; // 导入中文语言包，根据需要选择其他语言包
+import VideoJS from 'video.js';
+
+
+export default {
   data() {
-    return {messages: [], newMessage: "",};
-  }, methods: {
-    sendMessage() {
-      if (this.newMessage) {
-        this.messages.push({id: new Date().getTime(), sender: "我", content: this.newMessage,});
-        this.newMessage = "";
-      }
-    },
+    return {
+
+    };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      const player = new VideoJS(this.$refs.myPlayer);
+
+      // RTMP流地址示例（根据实际情况修改）
+      const rtmpUrl = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
+
+      player.src({ type: 'rtmp', src: rtmpUrl }); // 使用'rtmp'作为type，而不是'application/x-mpegURL'
+      player.play();
+    });
+  },
+  methods: {
+
   },
 }; </script>
-<style scoped> .chat-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+<style scoped>
+/* 根据自己项目的情况调整样式 */
+.player-container {
+  width: 100%;
 }
-
-.chat-input {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  background-color: #f1f1f1;
+#myVideo {
+  width: 100%;
+  height: auto;
 }
-
-input {
-  height: 30px;
-  flex: 1;
-  margin-right: 10px;
-  padding: 5px;
-  border-radius: 4px;
-  border: none;
-}
-
-button {
-  height: 30px;
-  padding: 2px 10px;
-  border-radius: 4px;
-  border: none;
-  background-color: #4caf50;
-  color: #fff;
-}
-
-.message {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.message-sender {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.message-content {
-  word-break: break-all;
-} </style>
+</style>

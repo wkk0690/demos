@@ -17,18 +17,14 @@ public class CountDownLatchDemo {
         long start = System.currentTimeMillis();
         final CountDownLatch countDown = new CountDownLatch(num);
         for (int i = 0; i < num; i++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("start");
-                    try {
-                        Thread.sleep(2000);
-                        countDown.countDown(); //每当一个任务线程执行完毕，就将计数器减1
-
-                        System.out.println("end");
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+            new Thread(() -> {
+                System.out.println("start");
+                try {
+                    Thread.sleep(2000);
+                    countDown.countDown(); //每当一个任务线程执行完毕，就将计数器减1
+                    System.out.println("end");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }).start();
         }

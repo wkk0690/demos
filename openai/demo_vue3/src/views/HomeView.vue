@@ -1,43 +1,45 @@
 <template>
-  <div class="home">
-    <div style="width: 500px;height: 500px;">
-      <div v-for="(item, index) in messageList" :key="index">{{item.type == 1 ? '我' : 'ai'}}: {{item.content}}</div>
-    </div>
-    <input v-model="message"/><button @click="send">发送</button>
+  <div class="player-container">
+    <video ref="myPlayer" id="myVideo"></video>
   </div>
 </template>
 
 <script>
 
-import OpenAI from "openai";
+import 'video.js/dist/video-js.css'; // 导入video.js的CSS样式
+import VideoJS from 'video.js';
+
 
 export default {
   name: 'HomeView',
   data() {
     return {
-      openai: {},
-      message: '',
-      messageList: [],
+
     }
   },
   mounted() {
-    this.openai = new OpenAI({ apiKey: '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', dangerouslyAllowBrowser: true });
+    setTimeout(()=> {
+      const player = new VideoJS(this.$refs.myPlayer);
+
+      // RTMP流地址示例（根据实际情况修改）
+      const rtmpUrl = "rtmp://58.200.131.2:1935/livetv/hunantv";
+
+      player.src({ type: 'rtmp', src: rtmpUrl }); // 使用'rtmp'作为type，而不是'application/x-mpegURL'
+      player.play();
+    }, 1000)
   },
   methods: {
-    async sendAi() {
-      const completion = await this.openai.chat.completions.create({
-        messages: [{ role: "system", content: this.message }],
-        model: "gpt-3.5-turbo",
-      });
 
-      console.log(completion.choices[0].message.content);
-      this.messageList = [...this.messageList, {type: 2, content: completion.choices[0].message.content}];
-    },
-    send(){
-      this.messageList.push({type: 1, content: this.message})
-      this.sendAi();
-      this.message = ''
-    },
   }
 }
 </script>
+<style scoped>
+/* 根据自己项目的情况调整样式 */
+.player-container {
+  width: 100%;
+}
+#myVideo {
+  width: 100%;
+  height: auto;
+}
+</style>
