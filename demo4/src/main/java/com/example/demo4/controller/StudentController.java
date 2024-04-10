@@ -2,7 +2,9 @@ package com.example.demo4.controller;
 
 import com.example.demo4.po.Student;
 import com.example.demo4.service.StudentService;
+import org.apache.ibatis.cursor.Cursor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +25,16 @@ public class StudentController {
     @RequestMapping("/list")
     public List<Student> list(){
         return testService.selectList();
+    }
+
+    @RequestMapping("/cursor")
+    @Transactional
+    public List<Student> cursor(){
+        Cursor<Student> students = testService.selectCursorList();
+        for (Student student : students) {
+            System.out.println(student.toString());
+        }
+        return null;
     }
 
     @RequestMapping("/add")
